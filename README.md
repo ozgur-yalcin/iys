@@ -1,5 +1,5 @@
 [![license](https://img.shields.io/:license-mit-blue.svg)](https://github.com/OzqurYalcin/iys/blob/master/LICENSE.md)
-[![documentation](https://pkg.go.dev/badge/github.com/OzqurYalcin/iys/src)](https://pkg.go.dev/github.com/OzqurYalcin/iys/src)
+[![documentation](https://pkg.go.dev/badge/github.com/OzqurYalcin/iys)](https://pkg.go.dev/github.com/OzqurYalcin/iys/src)
 
 # iys
 iys.org.tr (İleti Yönetim Sistemi) Golang API
