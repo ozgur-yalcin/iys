@@ -19,7 +19,7 @@ func main() {
 	if auth {
 		request := new(iys.Request)
 		request.Recipient = "+905055555555"                                     // Alıcı adresi
-		request.RecipientType = iys.Individual                                  // Alıcı tipi
+		request.RecipientType = iys.Individual                                  // Alıcı türü
 		request.ConsentSource = iys.Web                                         // Adres kaynağı
 		request.ConsentType = iys.Sms                                           // İzin türü
 		request.ConsentStatus = iys.Accept                                      // İşlem türü

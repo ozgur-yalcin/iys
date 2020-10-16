@@ -32,7 +32,7 @@ func main() {
 	if auth {
 		request := new(iys.Request)
 		request.Recipient = "info@test.com"                                     // Alıcı adresi
-		request.RecipientType = iys.Individual                                  // Alıcı tipi
+		request.RecipientType = iys.Individual                                  // Alıcı türü
 		request.ConsentSource = iys.Web                                         // Adres kaynağı
 		request.ConsentType = iys.Mail                                          // İzin türü
 		request.ConsentStatus = iys.Accept                                      // İşlem türü
@@ -66,7 +66,7 @@ func main() {
 	if auth {
 		request := new(iys.Request)
 		request.Recipient = "+905055555555"                                     // Alıcı adresi
-		request.RecipientType = iys.Individual                                  // Alıcı tipi
+		request.RecipientType = iys.Individual                                  // Alıcı türü
 		request.ConsentSource = iys.Web                                         // Adres kaynağı
 		request.ConsentType = iys.Sms                                           // İzin türü
 		request.ConsentStatus = iys.Accept                                      // İşlem türü
@@ -100,7 +100,7 @@ func main() {
 	if auth {
 		request := new(iys.Request)
 		request.Recipient = "+905055555555"                                     // Alıcı adresi
-		request.RecipientType = iys.Individual                                  // Alıcı tipi
+		request.RecipientType = iys.Individual                                  // Alıcı türü
 		request.ConsentSource = iys.Web                                         // Adres kaynağı
 		request.ConsentType = iys.Call                                          // İzin türü
 		request.ConsentStatus = iys.Accept                                      // İşlem türü
