@@ -51,9 +51,8 @@ type Request struct {
 }
 
 type Response struct {
-	TransactionID interface{}   `json:"transactionId,omitempty"`
-	CreationDate  interface{}   `json:"creationDate,omitempty"`
-	Errors        []interface{} `json:"errors,omitempty"`
+	TransactionID interface{} `json:"transactionId,omitempty"`
+	CreationDate  interface{} `json:"creationDate,omitempty"`
 }
 
 const (
@@ -109,10 +108,14 @@ func (api *API) Authorize() bool {
 	defer res.Body.Close()
 	decoder := json.NewDecoder(res.Body)
 	decoder.UseNumber()
-	decoder.Decode(&api.Authentication)
-	if api.Authentication.AccessToken == nil {
+	if res.StatusCode != 200 {
+		var description interface{}
+		decoder.Decode(&description)
+		pretty, _ := json.MarshalIndent(description, " ", "\t")
+		log.Println(string(pretty))
 		return false
 	}
+	decoder.Decode(&api.Authentication)
 	return true
 }
 
@@ -136,6 +139,15 @@ func (api *API) CreateConsent(request *Request) (response *Response) {
 	defer res.Body.Close()
 	decoder := json.NewDecoder(res.Body)
 	decoder.UseNumber()
+	if res.StatusCode != 200 {
+		var description interface{}
+		decoder.Decode(&description)
+		pretty, _ := json.MarshalIndent(description, " ", "\t")
+		log.Println(string(pretty))
+		return response
+	}
 	decoder.Decode(&response)
+	pretty, _ := json.MarshalIndent(response, " ", "\t")
+	log.Println(string(pretty))
 	return response
 }
