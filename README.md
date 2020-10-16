@@ -1,4 +1,5 @@
 [![license](https://img.shields.io/:license-mit-blue.svg)](https://github.com/OzqurYalcin/iys/blob/master/LICENSE.md)
+[![documentation](https://godoc.org/github.com/OzqurYalcin/iys?status.svg)](https://godoc.org/github.com/OzqurYalcin/iys/src)
 
 # iys
  An easy-to-use iys.org.tr API with golang
