@@ -27,19 +27,17 @@ type API struct {
 	Config Config
 
 	Client struct {
-		Username interface{} `url:"username,omitempty"`
-		Password interface{} `url:"password,omitempty"`
+		Username  interface{} `json:"username,omitempty"`
+		Password  interface{} `json:"password,omitempty"`
+		GrantType interface{} `json:"grant_type,omitempty"`
 	}
 
 	Authentication struct {
-		Message interface{} `json:"message,omitempty"`
-		Status  interface{} `json:"status,omitempty"`
-		Result  struct {
-			AccessToken  interface{} `json:"accessToken,omitempty"`
-			RefreshToken interface{} `json:"refreshToken,omitempty"`
-			TokenType    interface{} `json:"tokenType,omitempty"`
-			ExpiresIn    interface{} `json:"expiresIn,omitempty"`
-		} `json:"result,omitempty"`
+		AccessToken      interface{} `json:"access_token,omitempty"`
+		RefreshToken     interface{} `json:"refresh_token,omitempty"`
+		TokenType        interface{} `json:"token_type,omitempty"`
+		ExpiresIn        interface{} `json:"expires_in,omitempty"`
+		RefreshExpiresIn interface{} `json:"refresh_expires_in,omitempty"`
 	}
 }
 
@@ -91,9 +89,10 @@ const (
 )
 
 func (api *API) Authorize() bool {
-	tokenurl := api.Config.BaseURL + "/sps/" + api.Config.UserCode + "/brands/" + api.Config.BrandCode + "/oauth/token"
+	tokenurl := api.Config.BaseURL + "/oauth2/token"
 	api.Client.Username = api.Config.Username
 	api.Client.Password = api.Config.Password
+	api.Client.GrantType = "password"
 	post, _ := json.Marshal(api.Client)
 	cli := new(http.Client)
 	req, err := http.NewRequest("POST", tokenurl, bytes.NewReader(post))
@@ -111,7 +110,7 @@ func (api *API) Authorize() bool {
 	decoder := json.NewDecoder(res.Body)
 	decoder.UseNumber()
 	decoder.Decode(&api.Authentication)
-	if api.Authentication.Result.AccessToken == nil {
+	if api.Authentication.AccessToken == nil {
 		return false
 	}
 	return true
@@ -128,7 +127,7 @@ func (api *API) CreateConsent(request *Request) (response *Response) {
 		return response
 	}
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Bearer "+api.Authentication.Result.AccessToken.(string))
+	req.Header.Set("Authorization", "Bearer "+api.Authentication.AccessToken.(string))
 	res, err := cli.Do(req)
 	if err != nil {
 		log.Println(err)
