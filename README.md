@@ -9,7 +9,7 @@ iys.org.tr (İleti Yönetim Sistemi) Golang API
 go get github.com/OzqurYalcin/iys
 ```
 
-# Sms
+# Sms izin
 ```go
 package main
 
@@ -50,7 +50,7 @@ func main() {
 ```
 
 
-# Mail
+# Mail izin
 ```go
 package main
 
