@@ -99,7 +99,7 @@ func main() {
 	auth := api.Authorize()
 	if auth {
 		request := new(iys.Request)
-		request.Recipient = "info@test.com"                                     // Alıcı adresi
+		request.Recipient = "+905055555555"                                     // Alıcı adresi
 		request.RecipientType = iys.Individual                                  // Alıcı tipi
 		request.ConsentSource = iys.Web                                         // Adres kaynağı
 		request.ConsentType = iys.Call                                          // İzin türü
