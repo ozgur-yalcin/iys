@@ -27,34 +27,34 @@ type API struct {
 	Config Config
 
 	Client struct {
-		Username string `url:"username,omitempty"`
-		Password string `url:"password,omitempty"`
+		Username interface{} `url:"username,omitempty"`
+		Password interface{} `url:"password,omitempty"`
 	}
 
 	Authentication struct {
-		Message string `json:"message,omitempty"`
-		Status  int    `json:"status,omitempty"`
+		Message interface{} `json:"message,omitempty"`
+		Status  interface{} `json:"status,omitempty"`
 		Result  struct {
-			AccessToken  string `json:"accessToken,omitempty"`
-			RefreshToken string `json:"refreshToken,omitempty"`
-			TokenType    string `json:"tokenType,omitempty"`
-			ExpiresIn    int    `json:"expiresIn,omitempty"`
+			AccessToken  interface{} `json:"accessToken,omitempty"`
+			RefreshToken interface{} `json:"refreshToken,omitempty"`
+			TokenType    interface{} `json:"tokenType,omitempty"`
+			ExpiresIn    interface{} `json:"expiresIn,omitempty"`
 		} `json:"result,omitempty"`
 	}
 }
 
 type Request struct {
-	Recipient     string        `json:"recipient,omitempty"`
+	Recipient     interface{}   `json:"recipient,omitempty"`
 	RecipientType RecipientType `json:"recipientType,omitempty"`
 	ConsentType   ConsentType   `json:"type,omitempty"`
 	ConsentSource ConsentSource `json:"source,omitempty"`
 	ConsentStatus ConsentStatus `json:"status,omitempty"`
-	ConsentDate   string        `json:"consentDate,omitempty"`
+	ConsentDate   interface{}   `json:"consentDate,omitempty"`
 }
 
 type Response struct {
-	TransactionID string        `json:"transactionId,omitempty"`
-	CreationDate  string        `json:"creationDate,omitempty"`
+	TransactionID interface{}   `json:"transactionId,omitempty"`
+	CreationDate  interface{}   `json:"creationDate,omitempty"`
 	Errors        []interface{} `json:"errors,omitempty"`
 }
 
@@ -111,6 +111,9 @@ func (api *API) Authorize() bool {
 	decoder := json.NewDecoder(res.Body)
 	decoder.UseNumber()
 	decoder.Decode(&api.Authentication)
+	if api.Authentication.Result.AccessToken == nil {
+		return false
+	}
 	return true
 }
 
@@ -125,7 +128,7 @@ func (api *API) CreateConsent(request *Request) (response *Response) {
 		return response
 	}
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Bearer "+api.Authentication.Result.AccessToken)
+	req.Header.Set("Authorization", "Bearer "+api.Authentication.Result.AccessToken.(string))
 	res, err := cli.Do(req)
 	if err != nil {
 		log.Println(err)
