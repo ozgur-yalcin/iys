@@ -1,12 +1,12 @@
-[![license](https://img.shields.io/:license-mit-blue.svg)](https://github.com/OzqurYalcin/iys/blob/master/LICENSE.md)
-[![documentation](https://pkg.go.dev/badge/github.com/OzqurYalcin/iys)](https://pkg.go.dev/github.com/OzqurYalcin/iys/src)
+[![license](https://img.shields.io/:license-mit-blue.svg)](https://github.com/ozgur-soft/iys/blob/master/LICENSE.md)
+[![documentation](https://pkg.go.dev/badge/github.com/ozgur-soft/iys)](https://pkg.go.dev/github.com/ozgur-soft/iys/src)
 
 # iys
 iys.org.tr (İleti Yönetim Sistemi) Golang API
 
 # Installation
 ```bash
-go get github.com/OzqurYalcin/iys
+go get github.com/ozgur-soft/iys
 ```
 
 # Mail gönderim izni
@@ -16,7 +16,7 @@ package main
 import (
 	"time"
 
-	iys "github.com/OzqurYalcin/iys/src"
+	iys "github.com/ozgur-soft/iys/src"
 )
 
 func main() {
@@ -50,7 +50,7 @@ package main
 import (
 	"time"
 
-	iys "github.com/OzqurYalcin/iys/src"
+	iys "github.com/ozgur-soft/iys/src"
 )
 
 func main() {
@@ -84,7 +84,7 @@ package main
 import (
 	"time"
 
-	iys "github.com/OzqurYalcin/iys/src"
+	iys "github.com/ozgur-soft/iys/src"
 )
 
 func main() {

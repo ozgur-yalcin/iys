@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	iys "github.com/OzqurYalcin/iys/src"
+	iys "github.com/ozgur-soft/iys/src"
 )
 
 func main() {
